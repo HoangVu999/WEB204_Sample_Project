@@ -46,6 +46,10 @@ INSERT INTO `categories` (`id`, `name`, `image`, `created_at`, `updated_at`) VAL
 (3, 'Huawei', '', '0000-00-00', '0000-00-00'),
 (4, 'Oppo', '', '0000-00-00', '0000-00-00');
 
+update categories set
+	name = 'yyy', image = 'xxx'
+	where id = 18
+
 -- --------------------------------------------------------
 
 --

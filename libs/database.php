@@ -1,5 +1,4 @@
 <?php
-
 //Hàm kết nối đến cơ sở dữ liệu
 function connection()
 {
@@ -10,12 +9,13 @@ function connection()
     }
     return $conn;
 }
+
 //Hàm lấy toàn bộ dữ liệu của 1 bảng $table
 function listAll($table)
 {
     $conn = connection();
     try {
-        $sql = "SELECT * FROM $table ORDER BY id DESC";
+        $sql = "SELECT * FROM $table ORDER BY id ASC";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -70,7 +70,7 @@ function insert($table, $data = array())
 //Hàm cập nhật dữ liệu trong bảng $table
 //Dữ liệu được cập là một mảng $data
 //Có điều cập nhật theo id
-function update($table, $data = array(), $id, $value_id)
+function update($table, $data = array(), $id)
 {
     $conn = connection();
     try {
@@ -79,8 +79,7 @@ function update($table, $data = array(), $id, $value_id)
             $sql .= "$key=:$key, ";
         }
         $sql = rtrim($sql, ", ");
-        $sql .= " WHERE $id=:$id";
-        $data[$id] = $value_id; //Thêm key là id vào mảng data
+        $sql .= " WHERE id= $id";
 
         $stmt = $conn->prepare($sql);
         $result = $stmt->execute($data);

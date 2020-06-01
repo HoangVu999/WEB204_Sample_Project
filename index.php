@@ -3,7 +3,6 @@ require_once "libs/categories.php";
 $result = list_all_category();
 var_dump($result);
 
-
 $page = isset($_GET['page']) ? $_GET['page'] : '';
 
 switch ($page) {
